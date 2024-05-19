@@ -1,7 +1,7 @@
 
 :root
 {
-    --dark0_x:  46,52,64; /* #2e3440 */
+    --dark0_x:  38,44,55; /* #262c38 */
     --dark0:    rgb(var(--dark0_x));
     --dark1_x:  59,66,82; /* #3b4252 */
     --dark1:    rgb(var(--dark1_x));
@@ -61,6 +61,7 @@ body
     --bold-weight:                    600;
 
     --checkbox-radius:                0;
+    --radius-xs: 3px;
 
     /* --list-indent:                    2em; */
 
@@ -90,6 +91,9 @@ body
     --background-secondary:          var(--dark1);
     --background-secondary-alt:      var(--dark2);
     --background-modifier-border:    var(--dark2);
+    --background-blockquote: #2e3440;
+
+    --blockquote-line-color:         var(--red);
 
     --cursor-line-background:        rgba(var(--red_x), 0.2);
 
@@ -106,8 +110,13 @@ body
     --h5-color:                      var(--frost0);
     --h6-color:                      var(--frost2);
 
-    --text-highlight-bg:             var(--frost1);
-    --text-highlight-fg:             var(--dark0);
+    --text-highlight-bg-h-dark: 57;
+    --text-highlight-bg-s-dark: 40%;
+    --text-highlight-bg-l-dark: 38%;
+    --text-highlight-bg-a-dark: 0.541;
+
+    --text-highlight-bg: hsla(var(--text-highlight-bg-h-dark), var(--text-highlight-bg-s-dark), var(--text-highlight-bg-l-dark), var(--text-highlight-bg-a-dark));
+    --text-highlight-fg:             var(--light2);
 
     --text-accent:                   var(--orange);
     --text-accent-hover:             var(--frost2);
@@ -287,7 +296,7 @@ thead
 {
     border-bottom: 2px solid var(--background-modifier-border) !important;
 }
-  
+
 th
 {
     font-weight: 600 !important;
@@ -321,12 +330,34 @@ td
 {
     background-color: var(--text-highlight-bg);
     color: var(--text-highlight-fg);
+    padding: 1px 2px;
+    border-radius: var(--radius-xs);
 }
 
 .markdown-rendered mark a
 {
     color: var(--red) !important;
     font-weight: 600;
+}
+
+/* blockquote */
+:is(.markdown-preview-view,.markdown-rendered) blockquote {
+    padding: 0.5em 0.5em 0.5em 0.6em;
+    border-right-width: 0;
+    border-left: solid;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 5px;
+    border-color: var(--blockquote-line-color);
+    background-color: var(--background-blockquote);
+    border-radius: var(--radius-s);
+    margin-inline-start: 2.5%;
+    margin-inline-end: 2.5%;
+  }
+
+:is(.markdown-preview-view,.markdown-rendered) blockquote p {
+    margin-left: 1px;
+    margin-right: 0;
 }
 
 .search-result-file-matched-text
@@ -426,7 +457,7 @@ pre[class*="language-"]
  * This assumes --list-indent is default at 2em.
  */
 /*
-.cm-indent 
+.cm-indent
 {
     text-indent: 1em !important;
 }
@@ -437,7 +468,7 @@ pre[class*="language-"]
     fill: var(--mermaid-note) !important;
 }
 
-.mermaid .loopLine,
+.mermaid .loopLine
 {
     stroke: var(--mermaid-loopline) !important;
 }
@@ -522,4 +553,3 @@ pre[class*="language-"]
 {
     color: var(--red);
 }
-
